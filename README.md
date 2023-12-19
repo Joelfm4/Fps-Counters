@@ -1,9 +1,9 @@
 
 # FPS Counter Overview
 
-I've created a basic FPS (Frames Per Second) counter in Java to measure the frequency of consecutive frame rendering within a game loop. This counter assists in monitoring performance and ensuring smooth motion within graphical applications or games.
+I created some basic FPS (Frames Per Second) counters in several programming languages to measure the frequency of consecutive rendering of frames in a game loop. These counters help in monitoring performance and ensuring smooth movement in graphics applications or games.
 
-## How this Java FPS Counter Works
+## How the Java FPS Counter Works
 
 This Java code functions as a simple FPS counter within a game loop:
 
@@ -22,4 +22,4 @@ This Java code functions as a simple FPS counter within a game loop:
 
 ![image](https://github.com/Joelfm4/FpsCounter/assets/48136794/de6253fb-e0cc-4bf1-a5a7-d479a7c6498b)
 
-<p>Note: The other fps counters follow a similar logic</p>
+<p>The other fps counters follow a similar logic</p>
