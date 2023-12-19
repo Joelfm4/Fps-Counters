@@ -1,26 +1,49 @@
-init(); // Initialization method for the application or game
+public class FPSCounter {
+    private static final int TARGET_FPS = 60; // Desired FPS
+    private static long lastTime = System.nanoTime();
+    private static double nsPerTick = 1000000000.0 / TARGET_FPS;
+    private static int ticks;
+    private static int frames;
+    private static long lastTimer = System.currentTimeMillis();
+    private static double delta = 0;
 
-while (true) {
-    long time = System.currentTimeMillis(); // Record the current time
+    public static void main(String[] args) {
+        while (true) {
+            long now = System.nanoTime();
+            delta += (now - lastTime) / nsPerTick;
+            lastTime = now;
+            boolean shouldRender = false;
 
-    tick(); // Execute game logic or update game state
+            while (delta >= 1) {
+                tick(); // Game logic update
+                ticks++;
+                delta--;
+                shouldRender = true;
+            }
 
-    long now = System.currentTimeMillis(); // Record the time after processing
-    long elapsed = (now - time); // Calculate the time taken for processing
+            if (shouldRender) {
+                render(); // Render the frame
+                frames++;
+            }
 
-    // Calculate the time to sleep in order to achieve the desired FPS
-    long sleepTime = 1000 / getMaxFPS() - elapsed;
+            if (System.currentTimeMillis() - lastTimer > 1000) {
+                lastTimer += 1000;
+                System.out.println("Ticks: " + ticks + ", Frames: " + frames);
+                ticks = 0;
+                frames = 0;
+            }
+        }
+    }
 
-    try {
-        if (sleepTime > 0) {
-            // If the sleep time is positive, sleep for that duration
-            Thread.sleep(sleepTime);
-            //System.out.println("FPS: " + getMaxFPS());
-        } /* else {
-            // If sleep time is non-positive (negative or zero), optionally display FPS
-            System.out.println("FPS: " + 1000 / elapsed);
-        } */
-    } catch (InterruptedException e) {
-        e.printStackTrace();
+    private static void tick() {
+        // Simulate game logic here
+        // This method represents the processing done in a single frame
+        // Example: updating game state, handling input, etc.
+    }
+
+    private static void render() {
+        // Simulate rendering here
+        // This method represents the visual rendering of the game
+        // Example: drawing graphics, displaying objects, etc.
     }
 }
